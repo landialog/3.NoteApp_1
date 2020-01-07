@@ -10,11 +10,13 @@
     <script src="https://unpkg.com/vue"></script>
 </head>
 <style>
-.error{
-    color: hsl(0, 84%, 58%);
-    font-size: 12px;
-}
+    .error {
+        color: #ee3a3a;
+        font-size: 12px;
+        background: #000;
+    }
 </style>
+
 <body>
     <div id="app">
         <h1>{{title}}</h1>
@@ -28,11 +30,11 @@
         </div>
         <div class="notes">
             <div class="note" v-for="elem in notes">
-                 <h2 class="note-header">
-                     <h1 @dblclick="elem.edit = true"> {{elem.title}} </h1>
+                <h2 class="note-header">
+                    <h1 @dblclick="elem.edit = true"> {{elem.title}} </h1>
                 </h2>
                 <p class="note-content">{{elem.description}}</p>
-                 <p>{{elem.date}}</p>
+                <p>{{elem.date}}</p>
             </div>
         </div>
     </div>
@@ -70,17 +72,21 @@
             },
             methods: {
                 addNote() {
-                    let {title, description, edit} = this.note
-                    if (title === ""){
+                    let {
+                        title,
+                        description,
+                        edit
+                    } = this.note
+                    if (title === "") {
                         this.message = 'Поле надо заполнить'
-                    return false
+                        return false
                     }
 
                     this.notes.push({
                         title: title,
                         description: description,
                         date: new Date(Date.now()).toLocaleString(),
-                        edit:edit
+                        edit: edit
                     })
                     console.log(title)
                     this.message = null
